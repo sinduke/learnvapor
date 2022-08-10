@@ -1,10 +1,10 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
     name: "learnvapor",
     platforms: [
-       .macOS(.v12)
+       .macOS(.v10_15)
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
@@ -29,7 +29,7 @@ let package = Package(
                 .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
             ]
         ),
-        .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
+        .target(name: "Run", dependencies: [.target(name: "App")]),
         .testTarget(name: "AppTests", dependencies: [
             .target(name: "App"),
             .product(name: "XCTVapor", package: "vapor"),
